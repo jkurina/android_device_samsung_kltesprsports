@@ -37,6 +37,8 @@
 
 #include "init_msm8974.h"
 
+#define ISMATCH(a, b) (!strncmp((a), (b), PROP_VALUE_MAX))
+
 void cdma_properties(char const *default_cdma_sub,
         char const *operator_numeric, char const *operator_alpha)
 {
@@ -51,14 +53,20 @@ void cdma_properties(char const *default_cdma_sub,
 
 void init_target_properties()
 {
-    std::string platform = property_get("ro.board.platform");
-    if (platform != ANDROID_TARGET)
+    char platform[PROP_VALUE_MAX];
+    char bootloader[PROP_VALUE_MAX];
+    char device[PROP_VALUE_MAX];
+    char devicename[PROP_VALUE_MAX];
+    int rc;
+
+    rc = property_get("ro.board.platform", platform);
+    if (!rc || !ISMATCH(platform, ANDROID_TARGET))
         return;
 
-    std::string bootloader = property_get("ro.bootloader");
+    property_get("ro.bootloader", bootloader);
 
-    if (bootloader.find("G860P") == 0) {
-        /* kltespr */
+    if (strstr(bootloader, "G860P")) {
+        /* kltesprsports */
         property_set("ro.build.fingerprint", "samsung/kltesprsports/kltesprsports:6.0.1/MMB29M/G860PVPU2CPD1:user/release-keys");
         property_set("ro.build.description", "kltesprsports-user 6.0.1 MMB29M G860PVPU2CPD1 release-keys");
         property_set("ro.product.model", "SM-G860P");
@@ -68,6 +76,7 @@ void init_target_properties()
     }
     /* TODO: Add Sprint MVNOs */
 
-    std::string device = property_get("ro.product.device");
-    INFO("Found bootloader id %s setting build properties for %s device\n", bootloader.c_str(), device.c_str());
+    property_get("ro.product.device", device);
+    strlcpy(devicename, device, sizeof(devicename));
+    INFO("Found bootloader id %s setting build properties for %s device\n", bootloader, devicename);
 }
