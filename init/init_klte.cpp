@@ -67,8 +67,8 @@ void init_target_properties()
 
     if (strstr(bootloader, "G860P")) {
         /* kltesprsports */
-        property_set("ro.build.fingerprint", "samsung/kltesprsports/kltesprsports:6.0.1/MMB29M/G860PVPU2CPD1:user/release-keys");
-        property_set("ro.build.description", "kltesprsports-user 6.0.1 MMB29M G860PVPU2CPD1 release-keys");
+        property_set("ro.build.fingerprint", "samsung/kltesprsports/kltesprsports:6.0.1/MMB29M/G860PVPU2CPH4:user/release-keys");
+        property_set("ro.build.description", "kltesprsports-user 6.0.1 MMB29M G860PVPU2CPH4 release-keys");
         property_set("ro.product.model", "SM-G860P");
         property_set("ro.product.device", "kltesprsports");
         property_set("telephony.sms.pseudo_multipart", "1");
