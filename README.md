@@ -2,6 +2,8 @@ Copyright 2014 - The CyanogenMod Project with TWRP
 
 Copyright 2017 - The LineageOS Project
 
+**WORK IN PROGRESS. WILL PROBABLY SWALLOW YOUR CAT.**
+
 Device configuration for Samsung Galaxy S5 Sport variant (SM-G860P).
 ========================================
 
