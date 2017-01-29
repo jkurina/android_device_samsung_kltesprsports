@@ -57,7 +57,7 @@ void init_target_properties()
 
     std::string bootloader = property_get("ro.bootloader");
 
-    if (strstr(bootloader, "G860P")) {
+    if (bootloader.find("G860P") == 0) {
         /* kltesprsports */
         property_set("ro.build.fingerprint", "samsung/kltesprsports/kltesprsports:6.0.1/MMB29M/G860PVPU2CPH4:user/release-keys");
         property_set("ro.build.description", "kltesprsports-user 6.0.1 MMB29M G860PVPU2CPH4 release-keys");
