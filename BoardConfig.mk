@@ -32,26 +32,5 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 15728640
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2831155200
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 12187581440
 
-# TWRP specific build flags
-PRODUCT_COPY_FILES += device/samsung/kltesprsports/twrp.fstab:recovery/root/etc/twrp.fstab
-TW_THEME := portrait_hdpi
-RECOVERY_SDCARD_ON_DATA := true
-BOARD_HAS_NO_REAL_SDCARD := true
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TW_BRIGHTNESS_PATH := "/sys/devices/mdp.0/qcom\x2cmdss_fb_primary.190/leds/lcd-backlight/brightness"
-TW_MAX_BRIGHTNESS := 255
-TW_DEFAULT_BRIGHTNESS := 162
-TW_INTERNAL_STORAGE_PATH := "/data/media/0"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-TW_EXTERNAL_STORAGE_PATH := "/external_sd"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
-TW_NO_REBOOT_BOOTLOADER := true
-TW_HAS_DOWNLOAD_MODE := true
-TW_INCLUDE_CRYPTO := true
-TW_NO_EXFAT_FUSE := true
-TARGET_RECOVERY_QCOM_RTC_FIX := true
-TW_MTP_DEVICE := "/dev/mtp_usb"
-
 # inherit from the proprietary version
 -include vendor/samsung/kltesprsports/BoardConfigVendor.mk
