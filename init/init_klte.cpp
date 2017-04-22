@@ -37,15 +37,18 @@
 
 #include "init_msm8974.h"
 
-void cdma_properties(char const *default_cdma_sub,
-        char const *operator_numeric, char const *operator_alpha)
+void cdma_properties(char const *operator_alpha,
+        char const *operator_numeric,
+        char const *default_network)
 {
-    property_set("ril.subscription.types", "NV,RUIM");
-    property_set("ro.cdma.home.operator.numeric", operator_numeric);
+    /* Dynamic CDMA Properties */
     property_set("ro.cdma.home.operator.alpha", operator_alpha);
-    property_set("ro.telephony.default_cdma_sub", default_cdma_sub);
-    property_set("ro.telephony.default_network", "10");
-    property_set("ro.telephony.ril.config", "newDriverCallU,newDialCode");
+    property_set("ro.cdma.home.operator.numeric", operator_numeric);
+    property_set("ro.telephony.default_network", default_network);
+
+    /* Static CDMA Properties */
+    property_set("ril.subscription.types", "NV,RUIM");
+    property_set("ro.telephony.default_cdma_sub", "0");
     property_set("telephony.lteOnCdmaDevice", "1");
 }
 
@@ -59,12 +62,12 @@ void init_target_properties()
 
     if (bootloader.find("G860P") == 0) {
         /* kltesprsports */
-        property_set("ro.build.fingerprint", "samsung/kltesprsports/kltesprsports:6.0.1/MMB29M/G860PVPU2CPH4:user/release-keys");
-        property_set("ro.build.description", "kltesprsports-user 6.0.1 MMB29M G860PVPU2CPH4 release-keys");
+        property_set("ro.build.fingerprint", "samsung/kltesprsports/kltesprsports:6.0.1/MMB29M/G860PVPU2CQB2:user/release-keys");
+        property_set("ro.build.description", "kltesprsports-user 6.0.1 MMB29M G860PVPU2CQB2 release-keys");
         property_set("ro.product.model", "SM-G860P");
         property_set("ro.product.device", "kltesprsports");
         property_set("telephony.sms.pseudo_multipart", "1");
-        cdma_properties("1", "310120", "Sprint");
+        cdma_properties("Sprint", "310120", "8");
     }
     /* TODO: Add Sprint MVNOs */
 
